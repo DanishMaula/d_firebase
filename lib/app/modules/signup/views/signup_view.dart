@@ -18,6 +18,7 @@ class SignupView extends GetView<SignupController> {
         body: Padding(
           padding: EdgeInsets.all(18),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
                 controller: controller. emailC,
