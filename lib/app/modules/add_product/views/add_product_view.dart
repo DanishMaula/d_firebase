@@ -9,15 +9,35 @@ class AddProductView extends GetView<AddProductController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AddProductView'),
+        title: Text('Add Product'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'AddProductView is working',
-          style: TextStyle(fontSize: 20),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Column(
+          children: [
+            TextField(
+              controller: controller.nameC,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                hintText: 'Product Name',
+              ),
+            ),
+            TextField(
+              controller: controller.priceC,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(
+                hintText: 'Product Price',
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => controller.addProduct(controller.nameC.text, controller.priceC.text),
+              child: Text('Add Product'),
+            ),
+          ],
         ),
-      ),
+      )
     );
   }
 }

@@ -9,6 +9,8 @@ abstract class Routes {
   static const SIGNUP = _Paths.SIGNUP;
   static const RESET = _Paths.RESET;
   static const ADD_PRODUCT = _Paths.ADD_PRODUCT;
+  static const EDIT_PRODUCT = _Paths.EDIT_PRODUCT;
+  static const QUERY = _Paths.QUERY;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const SIGNUP = '/signup';
   static const RESET = '/reset';
   static const ADD_PRODUCT = '/add-product';
+  static const EDIT_PRODUCT = '/edit-product';
+  static const QUERY = '/query';
 }

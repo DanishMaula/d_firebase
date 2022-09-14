@@ -1,27 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddProductController extends GetxController {
+class EditProductController extends GetxController {
   late TextEditingController nameC;
   late TextEditingController priceC;
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void addProduct(String name, String price) async {
-    CollectionReference products = firestore.collection('products');
+  Future<DocumentSnapshot<Object?>> getData(String docId) async {
+    DocumentReference docRef =
+        firestore.collection('products').doc(docId);
+    return await docRef.get();
+  }
+
+  void addProduct(String name, String price, String docId) async {
+    DocumentReference docData = firestore.collection('products').doc(docId);
 
     try {
-      String dateNow = DateTime.now().toIso8601String();
-      await products.add({
+      await docData.update({
         'name': name,
-        'price':int.parse(price),
-        'time': dateNow
+        'price': int.parse(price),
       });
       Get.defaultDialog(
           title: 'Success',
-          middleText: 'Product has been added',
+          middleText: 'Product has been updated',
           onConfirm: () {
             nameC.clear();
             priceC.clear();
@@ -34,7 +37,7 @@ class AddProductController extends GetxController {
       print('Error : $e');
       Get.defaultDialog(
           title: 'Error',
-          middleText: 'Failed to add product',
+          middleText: 'Failed to up',
           textConfirm: "Ok");
     }
   }
